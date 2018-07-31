@@ -6,27 +6,21 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-
 	//move speed
-	public float moveSpeed = 3f;
-	private float maxMoveSpeed = 15f;
-	private float minMoveSpeed = 3f;
-	
-	//turn speed
-	public float rightTurnSpeed = 1f; //start
-	public float leftTurnSpeed = 1f; //start
-	private float rightMaxTurnSpeed = 1f; //max
-	private float leftMaxTurnSpeed = 1f; //max
-	private float rightMinTurnSpeed = .2f; //min
-	private float leftMinTurnSpeed = .2f; //min
+	public float moveSpeed = 3f; //start
+	private float maxMoveSpeed = 15f; //max
+	private float minMoveSpeed = 3f; //min
 
-	//rolling
-	public float roll = 0;
-	public float maxRoll = 360;
 
-	//scaling logic
-	private float moveScale = .8f;
-	private float turnScale = .1f;
+	//turn speeds
+	public float rightTurnSpeed = .9f; //start
+	public float rightMaxTurnSpeed = .9f; //max
+	public float rightMinTurnSpeed = .2f; //min
+
+	public float leftTurnSpeed = .9f; //start
+	public float leftMaxTurnSpeed = .9f; //max
+	public float leftMinTurnSpeed = .2f; //min
+
 
 	private float scaleTimer = 0f;
 	private float startScaleTimer = .3f;
@@ -48,14 +42,14 @@ public class PlayerMovement : MonoBehaviour
 	{
 		MainMovement ();
 
-		Rolling ();
-
 		Checking ();
 	}
 
+
+
+
 	void MainMovement ()
 	{
-		
 		if (Input.GetKey(KeyCode.D)) // turning the aircraft to the RIGHT
 		{
 			transform.Rotate(new Vector3(0, 0, -1) * rightTurnSpeed);
@@ -69,17 +63,11 @@ public class PlayerMovement : MonoBehaviour
 		if (Input.GetKey(KeyCode.P)) //adding speed
 		{
 			scaleTimer -= Time.deltaTime;
-			if (scaleTimer <= 0 && moveSpeed < maxMoveSpeed) //checking if it's less than the max
+			if (scaleTimer <= 0) //checking if it's less than the max
 			{
 				moveSpeed += moveScale; //adding
-				if (rightTurnSpeed < rightMaxTurnSpeed) //checking if it's less than the max
-				{
-					rightTurnSpeed -= turnScale; //smaller turning radius
-				}
-				if (leftTurnSpeed < leftMaxTurnSpeed) 
-				{
-					leftTurnSpeed -= turnScale; //smaller turning radius
-				}
+				rightTurnSpeed -= turnScale;//smaller turning radius
+				leftTurnSpeed -= turnScale; //smaller turning radius
 				scaleTimer = startScaleTimer; //reset 
 			}
 		}
@@ -87,58 +75,43 @@ public class PlayerMovement : MonoBehaviour
 		if (Input.GetKey(KeyCode.L)) //subtracting speed
 		{
 			scaleTimer -= Time.deltaTime;
-			if (scaleTimer <= 0 && moveSpeed > minMoveSpeed) //checking if it's more than the min
+			if (scaleTimer <= 0) //checking if it's more than the min
 			{
 				moveSpeed -= moveScale; //subtracting
-				if (rightTurnSpeed < rightMaxTurnSpeed) //checking if it's less than the max
-				{
-					rightTurnSpeed += turnScale; //smaller turning radius
-				}
-				if (leftTurnSpeed < leftMaxTurnSpeed) 
-				{
-					leftTurnSpeed += turnScale; //smaller turning radius
-				}
+				rightTurnSpeed += turnScale; //smaller turning radius
+				leftTurnSpeed += turnScale; //smaller turning radius
 				scaleTimer = startScaleTimer; //reset
 			}
 		}
 	}
 
-	void Rolling ()
-	{
-		if (Input.GetKey(KeyCode.E)) //rolling right
-		{
-
-		}
-	}
 
 	void Checking ()
 	{
-		//checking
+		//Turn speed check
 		if (rightTurnSpeed < rightMinTurnSpeed) //right min
 		{
 			rightTurnSpeed = rightMinTurnSpeed;
 		}
-
 		if (leftTurnSpeed < leftMinTurnSpeed) //left min
 		{
 			leftTurnSpeed = leftMinTurnSpeed;
 		}
-
 		if (rightTurnSpeed > rightMaxTurnSpeed) //right max
 		{
 			rightTurnSpeed = rightMaxTurnSpeed;
 		}
-
 		if (leftTurnSpeed > leftMaxTurnSpeed) //left max
 		{
 			leftTurnSpeed = leftMaxTurnSpeed;
 		}
 
+
+		//move speed check
 		if (moveSpeed < minMoveSpeed) //min speed
 		{
 			moveSpeed = minMoveSpeed;
 		}
-
 		if (moveSpeed > maxMoveSpeed) //max speed
 		{
 			moveSpeed = maxMoveSpeed;

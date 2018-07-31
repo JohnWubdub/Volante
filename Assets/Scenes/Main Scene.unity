@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 990943797}
   - component: {fileID: 990943799}
   - component: {fileID: 990943801}
+  - component: {fileID: 990943802}
   - component: {fileID: 990943800}
   m_Layer: 0
   m_Name: Plane
@@ -333,12 +334,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fdd5989850bae054cbbc226631dd3972, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 085b4795119a66c49ae31b773fd49fcc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.8, y: 0.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -367,11 +368,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7bb74bd1dccfe459e430ae6a508ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  rightTurnSpeed: 1
-  leftTurnSpeed: 1
+  moveSpeed: 3
+  rightTurnSpeed: 0.9
+  leftTurnSpeed: 0.9
   roll: 0
-  maxRoll: 360
 --- !u!50 &990943800
 Rigidbody2D:
   serializedVersion: 4
@@ -401,5 +401,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a76d00ce45a9a41a151dc004041160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &990943802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 990943796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39fe06e6362662d41b14833ff5737aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
